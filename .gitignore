@@ -61,3 +61,11 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+aReuToolsUITests
+aReuToolsTests
+aReuTools/AppDelegate.h
+aReuTools/AppDelegate.m
+aReuTools/Info.plist
+aReuTools/main.m
+aReuTools/ViewController.h
+aReuTools/ViewController.m
