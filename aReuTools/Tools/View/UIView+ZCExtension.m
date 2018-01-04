@@ -7,6 +7,7 @@
 //
 
 #import "UIView+ZCExtension.h"
+#import <CoreGraphics/CoreGraphics.h>
 
 @implementation UIView(ZCExtension)
 
@@ -72,9 +73,9 @@
 
 - (void)setZc_bottom:(CGFloat)zc_bottom
 {
-    CGRect rect = self.frame;
+    CGRect rect   = self.frame;
     rect.origin.y = zc_bottom - rect.size.height;
-    self.frame = rect;
+    self.frame    = rect;
 }
 
 - (CGFloat)zc_bottom
@@ -82,6 +83,41 @@
     return self.frame.origin.y + self.frame.size.height;
 }
 
+- (void)setZc_width:(CGFloat)zc_width
+{
+    CGRect rect     = self.frame;
+    rect.size.width = zc_width;
+    self.frame      = rect;
+}
+
+- (CGFloat)zc_width
+{
+    return self.frame.size.width;
+}
+
+- (void)setZc_height:(CGFloat)zc_height
+{
+    CGRect rect      = self.frame;
+    rect.size.height = zc_height;
+    self.frame       = rect;
+}
+
+- (CGFloat)zc_height
+{
+    return self.frame.size.height;
+}
+
+- (void)setZc_size:(CGSize)zc_size
+{
+    CGRect rect = self.frame;
+    rect.size   = zc_size;
+    self.frame  = rect;
+}
+
+- (CGSize)zc_size
+{
+    return self.frame.size;
+}
 
 - (void)clearAllSubViews
 {
@@ -90,6 +126,43 @@
             [subView removeFromSuperview];
         }
     }
+}
+
+@end
+
+@implementation UIView (ZCRoundCorner)
+
+-(void)setDefaultCorner
+{
+    [self customSetCorner:self.zc_height/2.0 borderWidth:0 borderColor:nil];
+}
+
+-(void)setCorner:(CGFloat)cornerRadius
+     borderWidth:(CGFloat)width
+     borderColor:(UIColor*)color
+{
+    [self customSetCorner:cornerRadius
+              borderWidth:width
+              borderColor:color];
+}
+
+//TODO 后续添加单个位置圆角设置,后续按需求进行优化
+
+
+- (void)customSetCorner:(CGFloat)cornerRadius
+            borderWidth:(CGFloat)width
+            borderColor:(UIColor*)color
+{
+    UIBezierPath *path  = [UIBezierPath bezierPathWithRoundedRect:self.bounds
+                                                     cornerRadius:cornerRadius];
+    CAShapeLayer *layer = [[CAShapeLayer alloc] init];
+    if (color) {
+        layer.borderColor = color.CGColor;
+        layer.borderWidth = width;
+    }
+    layer.frame         = self.bounds;
+    layer.path          = path.CGPath;
+    self.layer.mask     = layer;
 }
 
 @end

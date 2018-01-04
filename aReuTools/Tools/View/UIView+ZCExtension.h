@@ -26,5 +26,32 @@
 
 @property (assign, nonatomic) CGFloat zc_bottom;
 
+@property (assign, nonatomic) CGSize  zc_size;
+
+/**
+ Remove all subView on the current view
+ */
 - (void)clearAllSubViews;
+
 @end
+
+@interface UIView (ZCRoundCorner)
+
+/**
+ The current control's default setting is half the height of the corner, without the width and color of the border
+ */
+-(void)setDefaultCorner;
+
+/**
+ Custom view method, do not set the border width defaults to 1pt, the same border color defaults to the background color
+
+ @param cornerRadius cornerRadius
+ @param width borderWidth
+ @param color borderColor
+ */
+-(void)setCorner:(CGFloat)cornerRadius
+     borderWidth:(CGFloat)width
+     borderColor:(UIColor*)color;
+
+@end
+
