@@ -10,6 +10,42 @@
 
 @interface NSString(ZCExtension)
 
-+(NSString*)zCStringFromValue:(NSInteger)value;
+/**
+ NSInteger converted to NSString
+
+ @param value <#value description#>
+ @return <#return value description#>
+ */
++ (NSString*)zCStringFromValue:(NSInteger)value;
+
+- (NSString *)zCChangetoUTF8;
+
+/**
+ Returns the current system time format as follows: "YYYY-MM-dd HH: mm: ss"
+
+ @return <#return value description#>
+ */
++ (NSString *)zCGetCurrentTime;
+
+
+/**
+ Set detection
+
+ @return <#return value description#>
+ */
+- (BOOL)isMobileNumberClassification;
+
+- (BOOL)isMobileNumber;
+
+- (BOOL)isEmailAddress;
+
+- (BOOL)simpleVerifyIdentityCardNum;
+
+- (BOOL)isCarNumber;
+
+- (BOOL)isValidUrl;
 
 @end
+
+
+
