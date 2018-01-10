@@ -10,17 +10,17 @@
 
 @implementation NSString(ZCExtension)
 
-+(NSString*)zCStringFromValue:(NSInteger)value
++(NSString*)stringFromValue:(NSInteger)value
 {
     return [NSString stringWithFormat:@"%ld",value];
 }
 
-- (NSString *)zCChangetoUTF8
+- (NSString *)changetoUTF8
 {
     return [self stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
-+ (NSString *)zCGetCurrentTime
++ (NSString *)getCurrentTime
 {
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
@@ -29,11 +29,15 @@
     return str;
 }
 
+- (BOOL)isNullString
+{
+    return self.length > 0 ;
+}
+
 - (BOOL)isValidateByRegex:(NSString *)regex{
     NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
     return [pre evaluateWithObject:self];
 }
-
 
 //手机号分服务商
 - (BOOL)isMobileNumberClassification

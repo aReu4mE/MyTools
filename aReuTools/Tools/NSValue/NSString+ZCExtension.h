@@ -27,6 +27,7 @@
  */
 + (NSString *)zCGetCurrentTime;
 
+- (BOOL)isNullString;
 
 /**
  Set detection
