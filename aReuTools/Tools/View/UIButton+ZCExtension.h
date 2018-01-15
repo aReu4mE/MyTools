@@ -10,6 +10,4 @@
 
 @interface UIButton(ZCExtension)
 
-- (void)
-
 @end

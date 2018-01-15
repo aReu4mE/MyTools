@@ -13,22 +13,22 @@
 @implementation UIButton(ZCExtension)
 
 ///exchange for initfial Method
-- (void)load
-{
-    Method initialMethod = class_getClassMethod([self class], @selector(initWithCoder:));
-    Method newMethod = class_getClassMethod([self class], @selector(initWithZCBtn:));
-    method_exchangeImplementations(initialMethod, newMethod);
-}
+//- (void)load
+//{
+//    Method initialMethod = class_getClassMethod([self class], @selector(initWithCoder:));
+//    Method newMethod = class_getClassMethod([self class], @selector(initWithZCBtn:));
+//    method_exchangeImplementations(initialMethod, newMethod);
+//}
 
-- (id)initWithZCBtn:(NSCoder *)aDecoder
-{
-    self = [self initWithZCBtn:aDecoder];
-    if (self) {
-        NSDictionary *dic = @{NSFontAttributeName:@12};
-//        CGSize size = self.titleLabel.zc_size;
-        [self.titleLabel.text boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-    }
-    return self;
-}
+//- (id)initWithZCBtn:(NSCoder *)aDecoder
+//{
+//    self = [self initWithZCBtn:aDecoder];
+//    if (self) {
+//        NSDictionary *dic = @{NSFontAttributeName:@12};
+////        CGSize size = self.titleLabel.zc_size;
+//        [self.titleLabel.text boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+//    }
+//    return self;
+//}
 
 @end
