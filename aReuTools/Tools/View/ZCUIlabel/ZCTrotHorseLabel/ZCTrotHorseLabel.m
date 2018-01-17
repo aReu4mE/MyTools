@@ -83,6 +83,11 @@
     }
 }
 
+- (void)updateTrotLabelSize
+{
+//    self.trotLabel.sizeToFit
+}
+
 #pragma mark - custom method
 - (NSString *)getZCTrotHorseType:(ZCTrotHorseType) type
 {

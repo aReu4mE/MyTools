@@ -59,4 +59,9 @@ typedef NS_ENUM(NSInteger,ZCDirection)
 
 - (void)stopTrotting;
 
+/**
+ The current view layer with an oval effect, fix the label text is blocked on both sides of the problem
+ */
+- (void)updateTrotLabelSize;
+
 @end
