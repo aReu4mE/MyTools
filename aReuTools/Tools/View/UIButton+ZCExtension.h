@@ -10,4 +10,20 @@
 
 @interface UIButton(ZCExtension)
 
+
+
+@end
+
+
+
+/**
+ The current category is to change the picture on the button and the text position
+ */
+@interface UIButton(ZCRectLayout)
+
+///<#name#>
+@property (assign, nonatomic) CGRect titleRect;
+///<#name#>
+@property (assign, nonatomic) CGRect imageRect;
+
 @end
