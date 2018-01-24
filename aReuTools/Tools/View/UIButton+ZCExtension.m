@@ -34,7 +34,7 @@ void zcMethodSwizzle(Class cls, SEL exitSel, SEL overrideSel)
     Method newMethod = class_getInstanceMethod(cls, overrideSel);
     //if method has existed in current class,return no
     if(class_addMethod(cls, exitSel, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))){
-        class_replaceMethod(cls, exitSel, method_getImplementation(newMethod), method_getTypeEncoding(newMethod));
+        class_replaceMethod(cls, overrideSel, method_getImplementation(oldMethod), method_getTypeEncoding(oldMethod));
     }else{
         method_exchangeImplementations(oldMethod, newMethod);
     }
@@ -73,7 +73,7 @@ void zcMethodSwizzle(Class cls, SEL exitSel, SEL overrideSel)
     if (![self isZero:self.imageRect]) {
        return [self zcImageRectForContentRect:self.imageRect];
     }
-    return [self zcTitleRectForContentRect:contentRect];
+    return [self zcImageRectForContentRect:contentRect];
 }
 
 - (BOOL)isZero:(CGRect)rect
