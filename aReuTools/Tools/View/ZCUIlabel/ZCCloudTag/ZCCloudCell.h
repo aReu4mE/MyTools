@@ -15,20 +15,18 @@ typedef NS_ENUM(NSInteger,CloudCellType)
     CloudCellTypeOnlyTitle,//出文字无边框
 };
 
-typedef NS_ENUM(NSInteger,CloudCellSelectType)
-{
-    CloudCellSelectTypeNormal = 101,
-    CloudCellSelectTypeHighlight,
-    CloudCellSelectTypeFillHighlight
-};
+//typedef NS_ENUM(NSInteger,CloudCellSelectType)
+//{
+//    CloudCellSelectTypeNormal = 101,
+//    CloudCellSelectTypeHighlight,
+//    CloudCellSelectTypeFillHighlight
+//};
 
 @class ZCCloudTagModel;
 @interface ZCCloudCell : UICollectionViewCell
 
 ///<#name#>
 @property (assign, nonatomic) CloudCellType cellType;
-///<#name#>
-@property (assign, nonatomic) CloudCellSelectType selectType;
 ///<#name#>
 @property (strong, nonatomic) ZCCloudTagModel *model;
 ///<#name#>
@@ -42,6 +40,10 @@ typedef NS_ENUM(NSInteger,CloudCellSelectType)
  额外添加的cell 方便在最后输入
  */
 @interface ZCCloudTFCell : UICollectionViewCell
+///<#name#>
+@property (strong, nonatomic,readonly) UITextField  *cloudTagTextfield;
+
+@property (copy, nonatomic) void(^addCellHandler)(ZCCloudTagModel *model);
 
 @end
 
