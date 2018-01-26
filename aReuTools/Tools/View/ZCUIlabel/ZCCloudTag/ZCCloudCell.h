@@ -10,27 +10,33 @@
 
 typedef NS_ENUM(NSInteger,CloudCellType)
 {
-    CloudCellTypeRound,//半圆
+    CloudCellTypeRound = 10,//半圆
     CloudCellTypeRectangle,//矩形
     CloudCellTypeOnlyTitle,//出文字无边框
 };
 
 typedef NS_ENUM(NSInteger,CloudCellSelectType)
 {
-    CloudCellSelectTypeNormal,
+    CloudCellSelectTypeNormal = 101,
     CloudCellSelectTypeHighlight,
     CloudCellSelectTypeFillHighlight
 };
 
+@class ZCCloudTagModel;
 @interface ZCCloudCell : UICollectionViewCell
 
 ///<#name#>
 @property (assign, nonatomic) CloudCellType cellType;
 ///<#name#>
 @property (assign, nonatomic) CloudCellSelectType selectType;
+///<#name#>
+@property (strong, nonatomic) ZCCloudTagModel *model;
+///<#name#>
+@property (strong, nonatomic,readonly) UILabel *textLabel;
+///<#name#>
+@property (strong, nonatomic) UIColor *borderColor;
 
 @end
-
 
 /**
  额外添加的cell 方便在最后输入

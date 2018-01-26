@@ -147,8 +147,6 @@
 }
 
 //TODO 后续添加单个位置圆角设置,后续按需求进行优化
-
-
 - (void)customSetCorner:(CGFloat)cornerRadius
             borderWidth:(CGFloat)width
             borderColor:(UIColor*)color
@@ -156,13 +154,13 @@
     UIBezierPath *path  = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                      cornerRadius:cornerRadius];
     CAShapeLayer *layer = [[CAShapeLayer alloc] init];
-    if (color) {
-        layer.borderColor = color.CGColor;
-        layer.borderWidth = width;
-    }
     layer.frame         = self.bounds;
     layer.path          = path.CGPath;
-    self.layer.mask     = layer;
+    if (color) {
+        layer.strokeColor   = color.CGColor;
+    }
+    layer.fillColor = [UIColor clearColor].CGColor;
+    [self.layer addSublayer:layer];
 }
 
 @end

@@ -9,13 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "ZCCloudCell.h"
 
+@class ZCCloudTagModel;
 @interface ZCCloudTagView : UICollectionView
-///
-@property (assign, nonatomic) BOOL zcScrollEnabled;
+
 ///<#name#>
-@property (assign, nonatomic) BOOL zcMutSel;
-///<#name#>
-@property (copy, nonatomic) NSArray *zcCloudTagArr;
+@property (copy, nonatomic) NSArray<ZCCloudTagModel *> *zcCloudTagArr;
 ///<#name#>
 @property (assign, nonatomic) CloudCellType zcCellType;
+
 @end

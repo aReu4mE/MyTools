@@ -10,9 +10,9 @@
 
 @interface ZCCloudTagModel : NSObject
 
-///<#name#>
-@property (copy, nonatomic) NSString *zcCloudtag;
-///<#name#>
-@property (assign, nonatomic) BOOL zcIsSelected;
+///cloudTag text
+@property (copy, nonatomic) NSString *cloudText;
+///current Tag is selected
+@property (assign,nonatomic) BOOL isSelected;
 
 @end
