@@ -44,9 +44,4 @@
     return rect;
 }
 
-- (void)drawTextInRect:(CGRect)rect
-{
-    [super drawTextInRect:rect];
-}
-
 @end
