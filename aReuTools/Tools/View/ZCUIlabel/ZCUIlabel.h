@@ -13,7 +13,4 @@
 ///Set the text margin, the default is 0
 @property (assign, nonatomic) UIEdgeInsets zcTextInsets;
 
-///<#name#>
-//@property (copy, nonatomic) IBInspectable NSString *custom
-
 @end

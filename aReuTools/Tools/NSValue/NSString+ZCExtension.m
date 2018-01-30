@@ -10,17 +10,17 @@
 
 @implementation NSString(ZCExtension)
 
-+(NSString*)stringFromValue:(NSInteger)value
++(NSString*)zCStringFromValue:(NSInteger)value
 {
-    return [NSString stringWithFormat:@"%ld",value];
+    return [NSString stringWithFormat:@"%ld",(long)value];
 }
 
-- (NSString *)changetoUTF8
+- (NSString *)zCChangetoUTF8
 {
     return [self stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
-+ (NSString *)getCurrentTime
++ (NSString *)zCGetCurrentTime
 {
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"YYYY-MM-dd HH:mm:ss"];

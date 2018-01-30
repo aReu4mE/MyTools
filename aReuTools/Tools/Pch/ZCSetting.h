@@ -37,4 +37,16 @@
 #define ZCCacheSubDirectory(dir)\
 [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:dir]
 
+/*
+ static inline CGFloat FontSize(CGFloat fontSize){
+ if (SCREEN_WIDTH==320) {
+ return fontSize-2;
+ }else if (SCREEN_WIDTH==375){
+ return fontSize;
+ }else{
+ return fontSize+2;
+ }
+ }
+ */
+
 #endif /* ZCSetting_h */
