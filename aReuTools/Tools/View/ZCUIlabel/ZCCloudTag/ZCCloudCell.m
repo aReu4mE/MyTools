@@ -45,6 +45,11 @@ NSString * const CloudPlaceholder = @" 请输入标签.";
     [self addSubview:self.textLabel];
 }
 
+- (void)layoutSubviews
+{
+    self.textLabel.zc_width = self.zc_width;
+}
+
 - (void)setModel:(ZCCloudTagModel *)model
 {
     if (!model) return;
@@ -64,7 +69,6 @@ NSString * const CloudPlaceholder = @" 请输入标签.";
 {
     _cellType = cellType;
     switch (cellType) {
-            
         case CloudCellTypeRound:
             [self.textLabel setCorner:self.zc_height/2.0
                 borderWidth:1.0

@@ -53,5 +53,10 @@
      borderWidth:(CGFloat)width
      borderColor:(UIColor*)color;
 
+
+/**
+ remove all sublayer in the current view's layer
+ */
+- (void)removeAllSubLayer;
 @end
 

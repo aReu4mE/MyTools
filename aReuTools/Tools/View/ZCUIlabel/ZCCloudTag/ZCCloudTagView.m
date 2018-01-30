@@ -108,10 +108,15 @@ const CGFloat lineSpacing = 12.0f;
     }
     
     ZCCloudCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: NSStringFromClass([ZCCloudCell class]) forIndexPath:indexPath];
-    ZCCloudTagModel *modle = [_zcMutCloudTagArr zcObjectAtIndex:indexPath.row];
-    cell.model    = modle;
+    ZCCloudTagModel *model = [_zcMutCloudTagArr zcObjectAtIndex:indexPath.row];
+    cell.model    = model;
     cell.cellType = self.zcCellType;
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

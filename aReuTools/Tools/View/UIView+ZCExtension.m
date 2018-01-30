@@ -160,7 +160,16 @@
         layer.strokeColor   = color.CGColor;
     }
     layer.fillColor = [UIColor clearColor].CGColor;
+    [self removeAllSubLayer];
     [self.layer addSublayer:layer];
 }
+
+- (void)removeAllSubLayer
+{
+    for (CALayer *layer in self.layer.sublayers) {
+        [layer removeFromSuperlayer];
+    }
+}
+
 
 @end
