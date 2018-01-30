@@ -49,7 +49,7 @@ NSString * const CloudPlaceholder = @" 请输入标签.";
 {
     if (!model) return;
     _model = model;
-    self.textLabel.text = _model.cloudText;
+    self.textLabel.text = model.cloudText;
     
     if (model.isSelected) {
         self.backgroundColor     = self.borderColor;
@@ -83,11 +83,6 @@ NSString * const CloudPlaceholder = @" 请输入标签.";
             break;
     }
 }
-
-//- (void)deleteMenuAction:(UIMenuItem*)item
-//{
-//    if(_deleCellHandler) self.deleCellHandler();
-//}
 
 @end
 
