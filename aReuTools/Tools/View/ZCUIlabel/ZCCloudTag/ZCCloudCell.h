@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+UIKIT_EXTERN NSString * const CloudPlaceholder;
+
 typedef NS_ENUM(NSInteger,CloudCellType)
 {
     CloudCellTypeRound = 10,//半圆
@@ -25,14 +27,15 @@ typedef NS_ENUM(NSInteger,CloudCellType)
 @class ZCCloudTagModel;
 @interface ZCCloudCell : UICollectionViewCell
 
-///<#name#>
 @property (assign, nonatomic) CloudCellType cellType;
-///<#name#>
+
 @property (strong, nonatomic) ZCCloudTagModel *model;
-///<#name#>
+
 @property (strong, nonatomic,readonly) UILabel *textLabel;
 ///<#name#>
 @property (strong, nonatomic) UIColor *borderColor;
+
+@property (copy, nonatomic) void(^deleCellHandler)(void);
 
 @end
 
@@ -40,7 +43,7 @@ typedef NS_ENUM(NSInteger,CloudCellType)
  额外添加的cell 方便在最后输入
  */
 @interface ZCCloudTFCell : UICollectionViewCell
-///<#name#>
+
 @property (strong, nonatomic,readonly) UITextField  *cloudTagTextfield;
 
 @property (copy, nonatomic) void(^addCellHandler)(ZCCloudTagModel *model);

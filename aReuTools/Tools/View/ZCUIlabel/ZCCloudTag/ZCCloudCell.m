@@ -10,13 +10,18 @@
 #import "UIView+ZCExtension.h"
 #import "ZCCloudTagModel.h"
 
-
-//限制长度
+//Limit the length of the text displayed in the edit text
 const NSInteger textMaxLength = 14;
+//Long press to eject the desired time for deletion
+const CGFloat pressDuration = 1.5f;
+//ZCCloudTFCell placeHolder
+NSString * const CloudPlaceholder = @" 请输入标签.";
+
 @interface ZCCloudCell ()
-
+{
+    UIMenuController *menuController;
+}
 @property (strong, nonatomic) UILabel *textLabel;
-
 @end
 
 @implementation ZCCloudCell
@@ -32,12 +37,12 @@ const NSInteger textMaxLength = 14;
 - (void)initSetting
 {
     self.backgroundColor = [UIColor clearColor];
-    self.textLabel = [[UILabel alloc] initWithFrame:self.bounds];
+    self.textLabel       = [[UILabel alloc] initWithFrame:self.bounds];
     self.textLabel.backgroundColor = [UIColor clearColor];
-    [self addSubview:self.textLabel];
     self.textLabel.textAlignment = NSTextAlignmentCenter;
-    self.textLabel.font = [UIFont systemFontOfSize:14.0f];
-    self.borderColor = [UIColor redColor];
+    self.textLabel.font  = [UIFont systemFontOfSize:14.0f];
+    self.borderColor     = [UIColor redColor];
+    [self addSubview:self.textLabel];
 }
 
 - (void)setModel:(ZCCloudTagModel *)model
@@ -47,10 +52,10 @@ const NSInteger textMaxLength = 14;
     self.textLabel.text = _model.cloudText;
     
     if (model.isSelected) {
-        self.backgroundColor = self.borderColor;
+        self.backgroundColor     = self.borderColor;
         self.textLabel.textColor = [UIColor whiteColor];
     }else{
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor     = [UIColor whiteColor];
         self.textLabel.textColor = self.borderColor;
     }
 }
@@ -61,33 +66,36 @@ const NSInteger textMaxLength = 14;
     switch (cellType) {
             
         case CloudCellTypeRound:
-            [self setCorner:self.zc_height/2.0
+            [self.textLabel setCorner:self.zc_height/2.0
                 borderWidth:1.0
                 borderColor:self.borderColor];
             break;
             
         case CloudCellTypeRectangle:
-            [self setCorner:1.0
-                borderWidth:1.0
-                borderColor:self.borderColor];
+            self.textLabel.layer.borderWidth = 1.0f;
+            self.textLabel.layer.borderColor = self.borderColor.CGColor;
             break;
             
         case CloudCellTypeOnlyTitle:
             break;
-            
+            //TODO
         default:
             break;
     }
 }
 
-@end
+//- (void)deleteMenuAction:(UIMenuItem*)item
+//{
+//    if(_deleCellHandler) self.deleCellHandler();
+//}
 
+@end
 
 
 @interface ZCCloudTFCell ()<UITextFieldDelegate>
 
 @property (strong, nonatomic) UITextField  *cloudTagTextfield;
-///<#name#>
+
 @property (copy, nonatomic) NSString *subCutText;
 
 @end
@@ -105,13 +113,19 @@ const NSInteger textMaxLength = 14;
 - (void)initTFSetting
 {
     self.cloudTagTextfield = [[UITextField alloc] initWithFrame:self.bounds];
-    self.cloudTagTextfield.placeholder = @"请输入标签";
-    self.cloudTagTextfield.delegate = self;
-    self.cloudTagTextfield.font = [UIFont systemFontOfSize:14.0f];
+    self.cloudTagTextfield.placeholder = CloudPlaceholder;
+    self.cloudTagTextfield.delegate    = self;
+    self.cloudTagTextfield.font        = [UIFont systemFontOfSize:14.0f];
     [self.cloudTagTextfield addTarget:self action:@selector(cloudTagTextfieldChanged:) forControlEvents:UIControlEventAllEditingEvents];
     [self addSubview:self.cloudTagTextfield];
 }
 
+- (void)refreshTFState
+{
+    [self.cloudTagTextfield resignFirstResponder];
+    self.cloudTagTextfield.text = @"";
+    
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -119,16 +133,16 @@ const NSInteger textMaxLength = 14;
         ZCCloudTagModel *model = [ZCCloudTagModel new];
         model.cloudText  = self.subCutText;
         model.isSelected = NO;
-        
         self.addCellHandler(model);
+        [self refreshTFState];
     }
     return YES;
 }
 
-
 - (void)cloudTagTextfieldChanged:(UITextField *)tf
 {
     if(!(tf.text.length > 0)) return;
+    self.subCutText = tf.text;
     if(tf.text.length > textMaxLength){
         self.subCutText = [tf.text substringToIndex:textMaxLength];
     }

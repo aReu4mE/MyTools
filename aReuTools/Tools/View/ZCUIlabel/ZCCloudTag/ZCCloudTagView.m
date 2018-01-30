@@ -14,13 +14,14 @@
 #import "UIView+ZCExtension.h"
 
 const CGFloat itemIterval = 16.0f;
-const CGFloat itemHeight = 25.0f;
+const CGFloat itemHeight  = 25.0f;
 const CGFloat lineSpacing = 12.0f;
 
 @interface ZCCloudTagView ()<UICollectionViewDataSource,UIScrollViewDelegate,UICollectionViewDelegateLeftAlignedLayout>
-
-//2.实现最后一位置为文本输入可编辑cell
-//3.长按删除标签
+{
+    NSMutableArray *_zcMutCloudTagArr;
+    NSIndexPath    *_selectIndexPath;
+}
 @end
 
 @implementation ZCCloudTagView
@@ -37,9 +38,17 @@ const CGFloat lineSpacing = 12.0f;
     return self;
 }
 
+- (void)setZcCloudTagArr:(NSArray<ZCCloudTagModel *> *)zcCloudTagArr
+{
+    _zcCloudTagArr = [zcCloudTagArr copy];
+    [_zcMutCloudTagArr removeAllObjects];
+    [_zcMutCloudTagArr addObjectsFromArray:_zcCloudTagArr];
+}
+
 #pragma mark - initSetting
 - (void)inittSetting
 {
+    _zcMutCloudTagArr  = @[].mutableCopy;
     self.zcCloudTagArr = @[];
     self.dataSource    = self;
     self.delegate      = self;
@@ -48,19 +57,19 @@ const CGFloat lineSpacing = 12.0f;
     [self registerClass:[ZCCloudCell class] forCellWithReuseIdentifier:NSStringFromClass([ZCCloudCell class])];
     //default is NO
     self.allowsMultipleSelection = YES;
+    
+    UILongPressGestureRecognizer *lGr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(couldCellLongPressAction:)];
+    [self addGestureRecognizer:lGr];
 }
 
 #pragma mark - UICollectionViewDelegateLeftAlignedLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == self.zcCloudTagArr.count) {
-        ZCCloudTFCell *cell = (ZCCloudTFCell*)[collectionView cellForItemAtIndexPath:indexPath];
-        CGSize tfSize = [cell.cloudTagTextfield.placeholder sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0f]}];
-        return CGSizeMake((tfSize.width + itemIterval), itemHeight);;
+    if (indexPath.row == _zcMutCloudTagArr.count) {
+        CGSize tfSize = [CloudPlaceholder sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0f]}];
+        return CGSizeMake((tfSize.width + itemIterval), itemHeight);
     }
-    
-#warning 适配字体
-    ZCCloudTagModel *model = (ZCCloudTagModel*)[self.zcCloudTagArr zcObjectAtIndex:indexPath.row];
+    ZCCloudTagModel *model = (ZCCloudTagModel*)[_zcMutCloudTagArr zcObjectAtIndex:indexPath.row];
     CGSize size = [model.cloudText sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0f]}];
     return CGSizeMake((size.width + itemIterval), itemHeight);
 }
@@ -82,18 +91,24 @@ const CGFloat lineSpacing = 12.0f;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.zcCloudTagArr.count + 1;
+    return _zcMutCloudTagArr.count + 1;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == self.zcCloudTagArr.count) {
+    __weak typeof(self) weakSelf = self;
+    if (indexPath.row == _zcMutCloudTagArr.count) {
         ZCCloudTFCell *tfCell = [collectionView dequeueReusableCellWithReuseIdentifier: NSStringFromClass([ZCCloudTFCell class]) forIndexPath:indexPath];
+        [tfCell setAddCellHandler:^(ZCCloudTagModel *model) {
+            __strong typeof(self) strongSelf = weakSelf;
+            [strongSelf addCellWithModel:model];
+        }];
         return tfCell;
     }
+    
     ZCCloudCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: NSStringFromClass([ZCCloudCell class]) forIndexPath:indexPath];
-    ZCCloudTagModel *modle = [self.zcCloudTagArr zcObjectAtIndex:indexPath.row];
+    ZCCloudTagModel *modle = [_zcMutCloudTagArr zcObjectAtIndex:indexPath.row];
     cell.model    = modle;
     cell.cellType = self.zcCellType;
     return cell;
@@ -101,22 +116,75 @@ const CGFloat lineSpacing = 12.0f;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZCCloudTagModel *model = self.zcCloudTagArr[indexPath.row];
-    model.isSelected = YES;
+    ZCCloudTagModel *model = _zcMutCloudTagArr[indexPath.row];
+    model.isSelected  = YES;
     ZCCloudCell *cell = (ZCCloudCell*)[collectionView cellForItemAtIndexPath:indexPath];
     cell.model = model;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZCCloudTagModel *model = self.zcCloudTagArr[indexPath.row];
-    model.isSelected = NO;
+    //update SelectState
+    ZCCloudTagModel *model = _zcMutCloudTagArr[indexPath.row];
+    model.isSelected  = NO;
     ZCCloudCell *cell = (ZCCloudCell*)[collectionView cellForItemAtIndexPath:indexPath];
     cell.model = model;
 }
 
+#pragma mark - CustomMethod
 
+#pragma mark - AddCell
+- (void)addCellWithModel:(ZCCloudTagModel*)model
+{
+    [_zcMutCloudTagArr addObject:model];
+    
+    [self performBatchUpdates:^{
+        NSIndexPath *newTFIndexPath = [NSIndexPath indexPathForItem: _zcMutCloudTagArr.count inSection:0];
+        NSIndexPath *newIndexPath   = [NSIndexPath indexPathForItem: _zcMutCloudTagArr.count-1 inSection:0];
+        [self moveItemAtIndexPath:newIndexPath toIndexPath:newTFIndexPath];
+        [self insertItemsAtIndexPaths:@[newIndexPath]];
+    } completion:^(BOOL finished) {
+        //TODO
+    }];
+}
 
+#pragma mark - DeleCell
+- (void)deleCellAtIndexpath
+{
+    [_zcMutCloudTagArr removeObjectAtIndex:_selectIndexPath.row];
+    [self performBatchUpdates:^{
+//        [self moveItemAtIndexPath:newIndexPath toIndexPath:newTFIndexPath];
+        [self deleteItemsAtIndexPaths:@[_selectIndexPath]];
+    } completion:^(BOOL finished) {
+        //TODO
+    }];
+}
 
+#pragma mark - Action
+- (void)couldCellLongPressAction:(UILongPressGestureRecognizer *)gr
+{
+    if (gr.state == UIGestureRecognizerStateBegan) {
+        [self becomeFirstResponder];
+        UIMenuController *menuController = [UIMenuController sharedMenuController];
+        UIMenuItem *deleteItem = [[UIMenuItem alloc] initWithTitle:@"删除" action:@selector(deleteMenuAction:)];
+        [menuController setMenuItems:@[deleteItem]];
+        
+        CGPoint selPoint = [gr locationInView:self];
+        _selectIndexPath =  [self indexPathForItemAtPoint:selPoint];
+        ZCCloudCell *cell = (ZCCloudCell *)[self cellForItemAtIndexPath:_selectIndexPath];
+        [menuController setTargetRect:cell.frame inView:self];
+        [menuController setMenuVisible:YES animated:YES];
+    }
+}
+
+- (void)deleteMenuAction:(UIMenuItem*)item
+{
+    [self deleCellAtIndexpath];
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
 
 @end

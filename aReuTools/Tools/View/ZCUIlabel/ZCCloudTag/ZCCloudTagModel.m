@@ -10,5 +10,12 @@
 
 @implementation ZCCloudTagModel
 
+- (id)copyWithZone:(nullable NSZone *)zone
+{
+    ZCCloudTagModel *model = [[ZCCloudTagModel allocWithZone:zone] init];
+    model.cloudText = [self.cloudText copy];
+    model.isSelected = self.isSelected;
+    return model;
+}
 
 @end

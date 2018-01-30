@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ZCCloudTagModel : NSObject
+@interface ZCCloudTagModel : NSObject<NSCopying>
 
 ///cloudTag text
 @property (copy, nonatomic) NSString *cloudText;
