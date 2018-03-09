@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -93,33 +92,32 @@
             <constraints>
                 <constraint firstItem="ZXY-yj-4jI" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="178:335" id="1A7-AF-fRt"/>
                 <constraint firstItem="urY-CS-0dB" firstAttribute="height" secondItem="fgH-xc-SKN" secondAttribute="height" id="1Ht-lU-BLw"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="OeA-dc-Wnd" secondAttribute="bottom" constant="20" id="2j5-Ga-dn3"/>
+                <constraint firstAttribute="bottom" secondItem="OeA-dc-Wnd" secondAttribute="bottom" constant="20" id="2j5-Ga-dn3"/>
                 <constraint firstItem="eg3-As-dFB" firstAttribute="height" secondItem="fgH-xc-SKN" secondAttribute="height" id="5dS-jC-aSE"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OeA-dc-Wnd" secondAttribute="trailing" constant="20" id="7fq-an-BV6"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Zj0-xn-A3N" secondAttribute="trailing" constant="20" id="81Q-vP-umn"/>
+                <constraint firstAttribute="trailing" secondItem="OeA-dc-Wnd" secondAttribute="trailing" constant="20" id="7fq-an-BV6"/>
+                <constraint firstAttribute="trailing" secondItem="Zj0-xn-A3N" secondAttribute="trailing" constant="20" id="81Q-vP-umn"/>
                 <constraint firstItem="urY-CS-0dB" firstAttribute="centerY" secondItem="fgH-xc-SKN" secondAttribute="centerY" id="8f1-hN-oTw"/>
                 <constraint firstItem="fgH-xc-SKN" firstAttribute="top" secondItem="ZXY-yj-4jI" secondAttribute="bottom" constant="10" id="ASo-DB-nym"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eg3-As-dFB" secondAttribute="trailing" constant="20" id="BXf-gY-Dyc"/>
+                <constraint firstAttribute="trailing" secondItem="eg3-As-dFB" secondAttribute="trailing" constant="20" id="BXf-gY-Dyc"/>
                 <constraint firstItem="urY-CS-0dB" firstAttribute="leading" secondItem="fgH-xc-SKN" secondAttribute="trailing" constant="10" id="G8B-HR-MDr"/>
-                <constraint firstItem="CkJ-Wq-ZXX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="NYf-45-rlK"/>
+                <constraint firstItem="CkJ-Wq-ZXX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="NYf-45-rlK"/>
                 <constraint firstItem="eg3-As-dFB" firstAttribute="width" secondItem="fgH-xc-SKN" secondAttribute="width" id="Q3N-wA-oCp"/>
                 <constraint firstItem="eg3-As-dFB" firstAttribute="centerY" secondItem="ZXY-yj-4jI" secondAttribute="centerY" id="R6G-C6-CpK"/>
                 <constraint firstItem="ZXY-yj-4jI" firstAttribute="leading" secondItem="CkJ-Wq-ZXX" secondAttribute="leading" id="Ufp-4O-CZF"/>
                 <constraint firstItem="ZXY-yj-4jI" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="40:413" id="VbJ-oy-Fbx"/>
                 <constraint firstItem="OeA-dc-Wnd" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="48:413" id="YM2-dG-k5q"/>
-                <constraint firstItem="Zj0-xn-A3N" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="bgW-Cr-gPL"/>
+                <constraint firstItem="Zj0-xn-A3N" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="bgW-Cr-gPL"/>
                 <constraint firstItem="OeA-dc-Wnd" firstAttribute="top" secondItem="Zj0-xn-A3N" secondAttribute="bottom" constant="12" id="d32-Tc-afs"/>
                 <constraint firstItem="Zj0-xn-A3N" firstAttribute="top" secondItem="fgH-xc-SKN" secondAttribute="bottom" constant="10" id="edj-7Y-wjY"/>
-                <constraint firstItem="CkJ-Wq-ZXX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="hwz-fy-l2m"/>
+                <constraint firstItem="CkJ-Wq-ZXX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="hwz-fy-l2m"/>
                 <constraint firstItem="fgH-xc-SKN" firstAttribute="leading" secondItem="ZXY-yj-4jI" secondAttribute="leading" id="j1D-Qr-TVf"/>
-                <constraint firstItem="OeA-dc-Wnd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="kNw-nT-J09"/>
+                <constraint firstItem="OeA-dc-Wnd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="kNw-nT-J09"/>
                 <constraint firstItem="urY-CS-0dB" firstAttribute="width" secondItem="fgH-xc-SKN" secondAttribute="width" id="l3r-87-Dih"/>
                 <constraint firstItem="eg3-As-dFB" firstAttribute="leading" secondItem="ZXY-yj-4jI" secondAttribute="trailing" constant="10" id="mvv-Rn-hOo"/>
                 <constraint firstItem="ZXY-yj-4jI" firstAttribute="top" secondItem="CkJ-Wq-ZXX" secondAttribute="bottom" multiplier="73:41" id="oBT-X7-A29"/>
                 <constraint firstItem="eg3-As-dFB" firstAttribute="height" secondItem="ZXY-yj-4jI" secondAttribute="height" id="qwb-mh-RC4"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="btn1" destination="ZXY-yj-4jI" id="KIV-Jl-RKE"/>
                 <outlet property="btn2" destination="eg3-As-dFB" id="jSe-rp-UgX"/>

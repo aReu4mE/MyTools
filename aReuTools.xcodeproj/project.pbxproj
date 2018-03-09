@@ -822,15 +822,17 @@
 			baseConfigurationReference = A62C523E064780214F06D5C1 /* Pods-aReuTools.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ning yu mai (FNVG4AGE8B)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: ning yu mai (B89MET7NX5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FNVG4AGE8B;
 				INFOPLIST_FILE = aReuTools/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.5even.heychtchers;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zongyang.userclient.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "c8354e79-8680-4bad-9775-321f4150f427";
+				PROVISIONING_PROFILE_SPECIFIER = dingding_development1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -841,14 +843,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ning yu mai (FNVG4AGE8B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FNVG4AGE8B;
 				INFOPLIST_FILE = aReuTools/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.5even.heychtchers;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zongyang.userclient.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "ac08f02a-57fd-49b3-9516-ece7ad18d819";
+				PROVISIONING_PROFILE_SPECIFIER = dingding_Distribution;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
