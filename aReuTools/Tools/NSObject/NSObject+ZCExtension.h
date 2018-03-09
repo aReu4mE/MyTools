@@ -17,7 +17,9 @@
 
 @interface NSObject(ZCParse)
 
-+ (id)setParse:(id)Json;
+//+ (id)setParse:(id)Json;
 
 @end
+
+
 

@@ -13,7 +13,6 @@
                         ofType:@"nib"].length > 0)
 @implementation UIView(ZCLoadNib)
 
-
 + (id)zcLoadViewFromNib
 {
     if(isContainNibPath([self class])) {
